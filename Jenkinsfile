@@ -19,11 +19,15 @@ pipeline{
         }
         stage("push to Docker Hub"){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'dockerHubCreds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]){
+                withCredentials([usernamePassword(
+                    credentialsId: "dockerHubCreds", 
+                    usernameVariable: "dockerHubUser", 
+                    passwordVariable: "dockerHubPass"
+                )]){
                     echo "pushed to Docker Hub"
-                    echo "docker login -u ${env.DOCKER_USER} -p {env.DOCKER_PASS}"
-                    sh "docker tag two-tier-flask-app ${env.DOCKER_USER}/two-tier-flask-app"
-                    sh "docker push ${env.DOCKER_USER}/two-tier-flask-app"
+                    echo "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                    sh "docker image tag two-tier-flask-app ${env.dockerHubUser}/two-tier-flask-app"
+                    sh "docker push ${env.dockerHubUser}/two-tier-flask-app:latest"
                 }
             }
         }
