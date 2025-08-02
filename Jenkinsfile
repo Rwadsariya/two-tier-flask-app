@@ -1,5 +1,5 @@
 pipeline{
-    agent any;
+    agent { albel "dev"};
     stages{
         stage("Code"){
             steps{
