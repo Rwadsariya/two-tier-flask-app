@@ -1,0 +1,10 @@
+# Ignore database data
+mysql-data
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore temporary files
+*.log
+*.tmp
