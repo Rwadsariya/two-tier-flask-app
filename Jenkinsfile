@@ -38,4 +38,21 @@ pipeline{
             }
         }
     }
+
+post {
+    success {
+        emailext(
+            subject: "Build Successful",
+            body: "Good News: Your Build Was Successful",
+            to: 'rominwadsariya@gmail.com'
+            )
+    }
+    failure {
+        emailext(
+            subject: "Build Failed",
+            body: "Bad News: Your Build Was Unsuccessful",
+            to: 'rominwadsariya@gmail.com'
+            )
+    }
+}
 }
